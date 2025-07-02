@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    container_name: imersao_alura
+    ports:
+      - "8000:8000"
+    volumes:
+      # Monta o código-fonte local no contêiner para hot-reloading
+      # Também garante que o banco de dados 'escola.db' persista no seu host
+      - .:/app
+    command: uvicorn app:app --host 0.0.0.0 --port 8000 --reload
